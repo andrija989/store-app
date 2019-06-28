@@ -18,7 +18,7 @@
     </div>
     
     <div>
-      <button type="submit">Add Contact</button>
+      <button class="btn btn-primary" type="submit">Add Contact</button>
     </div>
   </form>
 </div>
