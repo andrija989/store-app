@@ -3,7 +3,8 @@
   <ul>
     <li v-for='(contact,index) in contacts' :key="index">
       {{ contact.fullName}} - {{ contact.email}}
-      <button @click="handleRemove(contact)">Remove</button>
+      <router-link :to="latestPurchases(contact)">Products </router-link>
+      <button @click="handleRemove(contact)">Remove</button>      
     </li>
   </ul>
   <form @submit.prevent="handleAdd(newContact)">
@@ -56,7 +57,11 @@ export default {
             }
         
       
-    }
+        },
+    latestPurchases(contact) {
+        return `/customers/${contact.id}`
+        }
+
   }
 }
 </script>
