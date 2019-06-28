@@ -5,6 +5,7 @@
     <ul>
     <li v-for='(product,index) in filteredArray' :key="index">
       {{ product.name}} - {{ product.quantity}}
+        <button>Buy</button>
         <button @click = handleIncrement(product)>+</button>
         <button @click = handleDecrement(product)>-</button>
     </li>
