@@ -5,7 +5,8 @@
     <ul>
     <li v-for='(product,index) in filteredArray' :key="index">
       {{ product.name}} - {{ product.quantity}}
-     
+        <button @click = handleIncrement(product)>+</button>
+        <button @click = handleDecrement(product)>-</button>
     </li>
   </ul>
   
@@ -30,6 +31,16 @@ export default {
         })
     }    
   },
+
+  methods: {
+      handleIncrement(product) {
+          productService.increment(product)
+      },
+
+      handleDecrement(product) {
+          productService.decrement(product)
+      }
+  }
 }
 </script>
 
