@@ -1,12 +1,12 @@
 <template>
     <div>
         {{ product.name }} - {{ product.quantity}}
-        <select id='customerSelect'>
-            <option v-for='(customer,index) in customers' :key="index">
+        <select id='customerSelect' v-model="selectedCustomer">
+            <option  v-for='(customer,index) in customers' :key="index" :value="customer">
                 {{ customer.fullName}} 
             </option>
         </select>
-        <button @click="handleConfirm(customer,product)">Confirm</button>
+        <button @click="handleConfirm(selectedCustomer,product)">Confirm</button>
         <button @click="handleCancel">Cancel</button>
     </div>
     
@@ -28,14 +28,17 @@ export default {
 
   data() {
       return {
-          customers: customerService.list()
+          customers: customerService.list(),
+          selectedCustomer: {}
       }
   },
 
   methods: {
-      handleConfirm(customer,product) {
-          return customerService.addProductToCustomer(customer,product)
-          console.log(customer)
+      handleConfirm(selectedCustomer,product) {
+          console.log(this.selectedCustomer.id)
+          productService.decrement(product)
+          return customerService.addProductToCustomer(this.selectedCustomer,product.name)
+          
       },
       handleCancel() {
           

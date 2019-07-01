@@ -35,7 +35,7 @@ export default {
   computed: {
     filteredArray() {
         return this.products.filter(product => {
-            return product.name.includes(this.term)
+            return product.name.toLowerCase().includes(this.term.toLowerCase())
         })
     }    
   },
