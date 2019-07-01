@@ -4,7 +4,9 @@
     <input type="text" v-model="term" />
     <ul>
     <li v-for='(product,index) in filteredArray' :key="index">
-      {{ product.name}} - {{ product.quantity}}
+      <AppSingleProduct
+      :product = product
+      />
         <button>Buy</button>
         <button @click = handleIncrement(product)>+</button>
         <button @click = handleDecrement(product)>-</button>
@@ -17,8 +19,13 @@
 
 <script>
 import {productService} from '@/services/ProductsService'
+import AppSingleProduct from '@/components/AppSingleProduct'
 
 export default {
+    components: {
+      AppSingleProduct
+    },
+
     data () {
     return {
       products: productService.list(),
